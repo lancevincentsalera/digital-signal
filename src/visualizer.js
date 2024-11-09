@@ -12,7 +12,7 @@ import "./visualizer.scss";
 const Visualizer = () => {
   const [data, setData] = useState("");
   const [error, setError] = useState("");
-  const [initialValue, setInitialValue] = useState();
+  const [initialValue, setInitialValue] = useState(1);
 
   const techniques = useMemo(() => {
     if (data.length > 0 && /^[01]+$/.test(data)) {
