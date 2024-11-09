@@ -12,20 +12,21 @@ import "./visualizer.scss";
 const Visualizer = () => {
   const [data, setData] = useState("");
   const [error, setError] = useState("");
+  const [initialValue, setInitialValue] = useState();
 
   const techniques = useMemo(() => {
     if (data.length > 0 && /^[01]+$/.test(data)) {
       return [
         nrzL(data),
-        nrzI(data),
-        bipolarAMI(data),
-        pseudoternary(data),
+        nrzI(data, initialValue),
+        bipolarAMI(data, initialValue),
+        pseudoternary(data, initialValue),
         manchester(data),
-        differentialManchester(data),
+        differentialManchester(data, initialValue),
       ];
     }
     return [];
-  }, [data]);
+  }, [data, initialValue]);
 
   const names = [
     "NRZ-L",
@@ -59,6 +60,17 @@ const Visualizer = () => {
           aria-label="Binary input"
           maxLength={21}
         />
+
+        <label htmlFor="initialValue">Initial Value</label>
+        <select
+          value={initialValue}
+          onChange={(e) => setInitialValue(parseInt(e.target.value))}
+          name="initialValue"
+          id="initialValue"
+        >
+          <option value="1">High</option>
+          <option value="0">Low</option>
+        </select>
       </div>
 
       {error && <p className="error">{error}</p>}
@@ -76,7 +88,7 @@ const Visualizer = () => {
               <svg
                 width={`${technique.length * 50}`}
                 height="52.5"
-                style={{ border: "1px solid black" }}
+                style={{ border: "1px solid white" }}
               >
                 {technique.map((_, i) => {
                   const x = (i + 1) * 50;
@@ -87,7 +99,7 @@ const Visualizer = () => {
                       y1={0}
                       x2={x}
                       y2={50}
-                      stroke="black"
+                      stroke="white"
                       strokeWidth="1"
                       strokeDasharray="5,5"
                     />
@@ -109,8 +121,8 @@ const Visualizer = () => {
                               y1={point.y2}
                               x2={x1}
                               y2={y1}
-                              stroke="red"
-                              strokeWidth="3"
+                              stroke="white"
+                              strokeWidth="4"
                             />
                           )}
                           {/* 0, 50, 25, 0 */}
@@ -120,24 +132,24 @@ const Visualizer = () => {
                             y1={y1} //50
                             x2={point.x2 * 50} //25
                             y2={y1} //50
-                            stroke="red"
-                            strokeWidth="3"
+                            stroke="white"
+                            strokeWidth="4"
                           />
                           <line
                             x1={point.x2 * 50}
                             y1={y2}
                             x2={point.x2 * 50}
                             y2={point.y2}
-                            stroke="red"
-                            strokeWidth="3"
+                            stroke="white"
+                            strokeWidth="4"
                           />
                           <line
                             x1={point.x2 * 50} // 25
                             y1={point.y2} // 0
                             x2={x2} // 50
                             y2={point.y2} // 0
-                            stroke="red"
-                            strokeWidth="3"
+                            stroke="white"
+                            strokeWidth="4"
                           />
                           {technique[i + 1] &&
                             technique[i + 1].y !== point.y2 && (
@@ -146,8 +158,8 @@ const Visualizer = () => {
                                 y1={point.y2}
                                 x2={x2}
                                 y2={technique[i + 1].y}
-                                stroke="red"
-                                strokeWidth="3"
+                                stroke="white"
+                                strokeWidth="4"
                               />
                             )}
                         </>
@@ -158,8 +170,8 @@ const Visualizer = () => {
                             y1={y1}
                             x2={x2}
                             y2={y2}
-                            stroke="red"
-                            strokeWidth="3"
+                            stroke="white"
+                            strokeWidth="4"
                           />
 
                           {technique[i + 1] &&
@@ -169,8 +181,8 @@ const Visualizer = () => {
                                 y1={y1}
                                 x2={x2}
                                 y2={technique[i + 1].y}
-                                stroke="red"
-                                strokeWidth="3"
+                                stroke="white"
+                                strokeWidth="4"
                               />
                             )}
                         </>

@@ -11,9 +11,9 @@ export const nrzL = (data) => {
   return points;
 };
 
-export const nrzI = (data) => {
+export const nrzI = (data, initialValue) => {
   const points = [];
-  let high = false;
+  let high = initialValue === 1;
   data.split("").forEach((bit, index) => {
     points.push({
       x: index,
@@ -25,9 +25,9 @@ export const nrzI = (data) => {
   return points;
 };
 
-export const bipolarAMI = (data) => {
+export const bipolarAMI = (data, initialValue) => {
   const points = [];
-  let high = false;
+  let high = initialValue === 1;
   data.split("").forEach((bit, index) => {
     points.push({
       x: index,
@@ -39,9 +39,9 @@ export const bipolarAMI = (data) => {
   return points;
 };
 
-export const pseudoternary = (data) => {
+export const pseudoternary = (data, initialValue) => {
   const points = [];
-  let high = false;
+  let high = initialValue === 1;
   data.split("").forEach((bit, index) => {
     points.push({
       x: index,
@@ -67,9 +67,9 @@ export const manchester = (data) => {
   return points;
 };
 
-export const differentialManchester = (data) => {
+export const differentialManchester = (data, initialValue) => {
   const points = [];
-  let previousY = 0;
+  let previousY = initialValue === 1 ? 0 : 50;
 
   data.split("").forEach((bit, index) => {
     let currentY, nextY;
