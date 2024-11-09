@@ -1,0 +1,98 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  box-sizing: border-box;
+}
+
+.visualizer {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+
+  .heading {
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .subheading {
+    font-size: 50%;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .input-group {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    input {
+      font-size: 40%;
+      height: 2.5rem;
+      width: 20rem;
+      border: lightgray 1px solid;
+      border-radius: 10px;
+      box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+      padding: 0 1rem;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    button {
+      height: 2rem;
+      border: none;
+      border-radius: 10px;
+      background-color: #4caf50;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  }
+
+  .error {
+    font-size: 50%;
+    color: red;
+    text-align: center;
+  }
+
+  .main {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    background-color: whitesmoke;
+    border-radius: 20px;
+    padding: 20px;
+    min-height: 60vh;
+
+    .data {
+      margin-left: 300px;
+      span {
+        padding: 17px;
+        margin: 0;
+        align-items: center;
+        font-size: 80%;
+
+        &:first-child {
+          margin-left: 2rem;
+        }
+      }
+    }
+
+    .signal {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+
+      span {
+        text-align: right;
+        width: 300px;
+        font-size: 80%;
+      }
+    }
+  }
+}
